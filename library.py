@@ -1,6 +1,6 @@
 import numpy as np, random
 
-def savecards(cards, filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
+def savecards(cards, filelocation = r""):
     try:
         np.save(filelocation, cards)
     except:
@@ -8,7 +8,7 @@ def savecards(cards, filelocation = r"C:/users/limue/desktop/My Flashcard/words.
     return cards
 
 
-def readcards(filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
+def readcards(filelocation = r""):
     try:
         cards = np.load(filelocation, allow_pickle='TRUE').item()
     except:
