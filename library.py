@@ -6,7 +6,7 @@ def newcard(cards, word, meaning, example, prorate = 0):
     except:
         print("error: cannot add new card")
 
-def savecards(cards, filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
+def savecards(cards, filelocation = r"words.npy"):
     try:
         np.save(filelocation, cards)
     except:
@@ -14,7 +14,7 @@ def savecards(cards, filelocation = r"C:/users/limue/desktop/My Flashcard/words.
     return cards
 
 
-def readcards(filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
+def readcards(filelocation = r"words.npy"):
     try:
         cards = np.load(filelocation, allow_pickle='TRUE').item()
     except:
