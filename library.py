@@ -1,6 +1,12 @@
 import numpy as np, random
 
-def savecards(cards, filelocation = r""):
+def newcard(cards, word, meaning, example, prorate = 0):
+    try:
+        cards[word] = [meaning, example, prorate, prorate]
+    except:
+        print("error: cannot add new card")
+
+def savecards(cards, filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
     try:
         np.save(filelocation, cards)
     except:
@@ -8,7 +14,7 @@ def savecards(cards, filelocation = r""):
     return cards
 
 
-def readcards(filelocation = r""):
+def readcards(filelocation = r"C:/users/limue/desktop/My Flashcard/words.npy"):
     try:
         cards = np.load(filelocation, allow_pickle='TRUE').item()
     except:
@@ -36,7 +42,29 @@ def erasecard(cards, d_key):
     return cards
 
 def searchcard(cards, key):
-	try:
-		print("the meaning of \"" + key + "\" is \"" + cards[key][0] + "\"\nexample: " + cards[key][1])
-	except:
-		print("error: cannot find the card")
+    try:
+        print("the meaning of \"" + key + "\" is \"" + cards[key][0] + "\"\nexample: " + cards[key][1])
+    except:
+        print("error: cannot find the card")
+
+def reset_prorate(cards):
+    try:
+        for c in cards:
+            cards[c][2] = 0
+            cards[c][3] = 0
+    except:
+        print("cannot reset prorate")
+
+def viewprorate(cards, key):
+    return cards[key][2]
+
+def calprorate(cards, key):
+    try:
+        if cards[key][2] == 0:
+            cards[key][3] += 1
+            cards[key][2] = cards[key][3]
+        else:
+            cards[key][2] -= 1
+    except:
+        print("cannot calculate prorate")
+    
